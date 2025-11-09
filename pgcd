@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+    int a, b, r;
+    
+    // Lire deux entiers
+    printf("Entrez le premier nombre: ");
+    scanf("%d", &a);
+    printf("Entrez le deuxieme nombre: ");
+    scanf("%d", &b);
+
+    int x = a, y = b; // Sauvegarde des valeurs initiales
+
+    printf("\n--- Calcul du PGCD selon l'algorithme d'Euclide ---\n");
+
+    // Tant que b n'est pas nul
+    while (b != 0) {
+        r = a % b;
+        printf("%d = %d * (%d) + %d\n", a, b, a / b, r);
+        a = b;
+        b = r;
+    }
+
+    printf("\nLe PGCD de %d et %d est: %d\n", x, y, a);
+
+    return 0;
+}
