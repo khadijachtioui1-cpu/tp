@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+void cribleEratosthene(int n) {
+    // Tableau pour marquer les nombres premiers
+    bool estPremier[n + 1];
+
+    // 1) Initialiser tous les nombres comme premiers
+    for (int i = 0; i <= n; i++) {
+        estPremier[i] = true;
+    }
+
+    // 0 et 1 ne sont pas premiers
+    estPremier[0] = false;
+    estPremier[1] = false;
+
+    // 2) Appliquer le crible
+    for (int i = 2; i * i <= n; i++) {
+        if (estPremier[i]) {
+            // Éliminer les multiples de i
+            for (int j = i * i; j <= n; j += i) {
+                estPremier[j] = false;
+            }
+        }
+    }
+
+    // 3) Afficher les nombres premiers
+    printf("Nombres premiers jusqu'a %d :\n", n);
+    for (int i = 2; i <= n; i++) {
+        if (estPremier[i]) {
+            printf("%d ", i);
+        }
+    }
+    printf("\n");
+}
+
+int main() {
+    int n;
+
+    printf("Entrer la valeur maximale n : ");
+    scanf("%d", &n);
+
+    cribleEratosthene(n);
+
+    return 0;
+}
